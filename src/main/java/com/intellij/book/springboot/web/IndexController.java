@@ -2,6 +2,9 @@ package com.intellij.book.springboot.web;
 
 import com.intellij.book.springboot.config.auth.LoginUser;
 import com.intellij.book.springboot.config.auth.dto.SessionUser;
+import com.intellij.book.springboot.domain.exts.Exts;
+import com.intellij.book.springboot.domain.exts.FlagYN;
+import com.intellij.book.springboot.service.exts.ExtsService;
 import com.intellij.book.springboot.service.posts.PostsService;
 import com.intellij.book.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
@@ -17,6 +21,7 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
+    private final ExtsService extsService;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
@@ -41,5 +46,20 @@ public class IndexController {
         model.addAttribute("post", dto);
 
         return  "posts-update";
+    }
+
+    @GetMapping("/exts")
+    public String exts(Model model, @LoginUser SessionUser user) {
+
+        model.addAttribute("extsCustom", extsService.findAllByCustomYn(FlagYN.Y));
+        model.addAttribute("extsCustomLength", extsService.findAllByCustomYn(FlagYN.Y).size());
+
+        model.addAttribute("extsDefault", extsService.findAllByDefaultYn(FlagYN.Y));
+
+        if(user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+
+        return "exts";
     }
 }

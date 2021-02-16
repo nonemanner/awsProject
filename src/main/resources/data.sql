@@ -1,0 +1,7 @@
+insert into exts (created_date, modified_date, default_yn, name, use_yn) values (sysdate, sysdate, 'Y', 'bat', 'N')
+insert into exts (created_date, modified_date, default_yn, name, use_yn) values (sysdate, sysdate, 'Y', 'cmd', 'N')
+insert into exts (created_date, modified_date, default_yn, name, use_yn) values (sysdate, sysdate, 'Y', 'com', 'N')
+insert into exts (created_date, modified_date, default_yn, name, use_yn) values (sysdate, sysdate, 'Y', 'cpl', 'N')
+insert into exts (created_date, modified_date, default_yn, name, use_yn) values (sysdate, sysdate, 'Y', 'exe', 'N')
+insert into exts (created_date, modified_date, default_yn, name, use_yn) values (sysdate, sysdate, 'Y', 'src', 'N')
+insert into exts (created_date, modified_date, default_yn, name, use_yn) values (sysdate, sysdate, 'Y', 'js', 'N')
